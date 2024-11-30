@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BreakdownBoard - Review Albums</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>BreakdownBoard - Review Albums</h1>
+    
+    <form id="review-form">
+        <input type="text" id="album-name" placeholder="Album Name" required>
+        <input type="text" id="album-artist" placeholder="Artist Name" required>
+        <textarea id="review-text" placeholder="Write your review" required></textarea>
+        <button type="submit">Submit Review</button>
+    </form>
+
+    <h2>Album Reviews</h2>
+    <ul id="review-list">
+        {% for review in reviews %}
+        <li>
+            <strong>{{ review['album_name'] }}</strong> by <em>{{ review['artist'] }}</em>
+            <p>{{ review['review_text'] }}</p>
+            <button class="delete-btn" data-id="{{ review['id'] }}">Delete</button>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
+
